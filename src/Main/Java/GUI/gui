@@ -1,0 +1,266 @@
+package GUI;
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.swing.*;
+
+/***************************************************
+ ***Name:gui.java***********************************
+ ***Author:Hayley King******************************
+ ***Purpose: To create a visualization of the*******
+ ************game for the players of the text*******
+ ************based adventure game*******************
+ */
+
+public class gui implements ActionListener {
+	
+	private static JTextField textBox;
+	private static JButton rollStrength;
+	private static JButton rollIntelligence;
+	private static JButton rollWisdom;
+	private static JButton rollDexterity;
+	private static JButton rollConstitution;
+	private static JButton rollCharisma;
+	private static JButton submit;
+	private static JLabel readArmorClass;
+	private static JLabel readGold;
+	private static JProgressBar healthBar;
+	private static JLabel roomBackground;
+	private static JLabel outputTxt;
+	
+	
+	
+	public static String backgrounds(String myRoom) {
+		//placeholder to be replaced with proper variables from other classes
+		String hero = "human";
+		int room = 1;
+		
+		//decides background visual based on race & current room number
+		//test to be sure image will change when room changes
+		
+		//elf rooms
+		if (hero.equals("elf")) {
+			if (room == 1) {
+				myRoom = "Resources/images/room1_elf.png";
+				return myRoom;
+			} else if (room == 2) {
+				myRoom = "Resources/images/room2_elf.png";
+				return myRoom;
+			} else if (room == 3) {
+				myRoom = "Resources/images/room3_elf.png";
+				return myRoom;
+			} else if (room == 4) {
+				myRoom = "Resources/images/room4_elf.png";
+				return myRoom;
+			} else if (room == 5) {
+				myRoom = "Resources/images/room5_elf.png";
+				return myRoom;
+			} else {
+				myRoom = "Resources/images/room5_elf.png";
+				return myRoom;
+			}
+			
+		//human rooms
+		} else if (hero.equals("human")) {
+			if (room == 1) {
+				myRoom = "Resources/images/room1_human.png";
+				return myRoom;
+			} else if (room == 2) {
+				myRoom = "Resources/images/room2_human.png";
+				return myRoom;
+			} else if (room == 3) {
+				myRoom = "Resources/images/room3_human.png";
+				return myRoom;
+			} else if (room == 4) {
+				myRoom = "Resources/images/room4_human.png";
+				return myRoom;
+			} else if (room == 5) {
+				myRoom = "Resources/images/room5_human.png";
+				return myRoom;
+			} else {
+				myRoom = "Resources/images/room5_elf.png";
+				return myRoom;
+			}
+			
+		//dwarf rooms
+		} else if (hero.equals("dwarf")) {
+			if (room == 1) {
+				myRoom = "Resources/images/room1_dwarf.png";
+				return myRoom;
+			} else if (room == 2) {
+				myRoom = "Resources/images/room2_dwarf.png";
+				return myRoom;
+			} else if (room == 3) {
+				myRoom = "Resources/images/room3_dwarf.png";
+				return myRoom;
+			} else if (room == 4) {
+				myRoom = "Resources/images/room4_dwarf.png";
+				return myRoom;
+			} else if (room == 5) {
+				myRoom = "Resources/images/room5_dwarf.png";
+				return myRoom;
+			} else {
+				myRoom = "Resources/images/room5_elf.png";
+				return myRoom;
+			}
+		} else {
+			myRoom = "Resources/images/room5_elf.png";
+			return myRoom;
+		}
+	}
+	
+	
+	
+	public static void main(String [ ] args) {
+		// add frame and panel
+		JFrame frame = new JFrame("Tabletop Role-Playing Game");
+		JPanel panel = new JPanel();
+		
+		//Text field for actions
+		textBox = new JTextField(50);
+		textBox.setBounds(20,460,575,25);
+		panel.add(textBox);
+		
+		//Strength button
+		rollStrength = new JButton("STR: 0");
+		rollStrength.setBounds(20,15,80,25);
+		rollStrength.addActionListener(new gui());
+		rollStrength.setActionCommand("Str");
+		panel.add(rollStrength);
+		
+		//Dexterity button
+		rollDexterity = new JButton("DEX: 0");
+		rollDexterity.setBounds(115,15,80,25);
+		rollDexterity.addActionListener(new gui());
+		rollDexterity.setActionCommand("Dex");
+		panel.add(rollDexterity);
+		
+		//Constitution button
+		rollConstitution = new JButton("CON: 0");
+		rollConstitution.setBounds(210,15,80,25);
+		rollConstitution.addActionListener(new gui());
+		rollConstitution.setActionCommand("Con");
+		panel.add(rollConstitution);
+		
+		//Intelligence button
+		rollIntelligence = new JButton("INT: 0");
+		rollIntelligence.setBounds(305,15,80,25);
+		rollIntelligence.addActionListener(new gui());
+		rollIntelligence.setActionCommand("Int");
+		panel.add(rollIntelligence);
+		
+		//Wisdom button
+		rollWisdom = new JButton("WIS: 0");
+		rollWisdom.setBounds(400,15,80,25);
+		rollWisdom.addActionListener(new gui());
+		rollWisdom.setActionCommand("Wis");
+		panel.add(rollWisdom);
+		
+		//Charisma button
+		rollCharisma = new JButton("CHA: 0");
+		rollCharisma.setBounds(495,15,80,25);
+		rollCharisma.addActionListener(new gui());
+		rollCharisma.setActionCommand("Cha");
+		panel.add(rollCharisma);
+		
+		//armor class; read amount is placeholder
+		readArmorClass = new JLabel("AC: 0");
+		readArmorClass.setBounds(622,20,80,25);
+		readArmorClass.setHorizontalAlignment(JLabel.CENTER);
+		readArmorClass.setForeground(Color.white);
+		panel.add(readArmorClass);
+		
+		//gold; read amount is placeholder
+		readGold = new JLabel("G: 0");
+		readGold.setBounds(622,73,80,25);
+		readGold.setHorizontalAlignment(JLabel.CENTER);
+		readGold.setForeground(Color.white);
+		panel.add(readGold);
+		
+		//health bar; progress values are placeholders
+		//want to fix HP text colors, but not priority
+		healthBar = new JProgressBar(0,10);
+		healthBar.setValue(10);
+		healthBar.setString("HP");
+		healthBar.setStringPainted(true);
+		healthBar.setBounds(20,55,150,25);
+		healthBar.setForeground(Color.green);
+		panel.add(healthBar);
+		
+		//submit button for text field
+		submit = new JButton("SUBMIT");
+		submit.setBounds(600, 460, 80, 25);
+		submit.addActionListener(new gui());
+		submit.setActionCommand("Sub");
+		panel.add(submit);
+		
+		//output text to box above text field
+		outputTxt = new JLabel("");
+		outputTxt.setVerticalAlignment(JLabel.BOTTOM);
+		outputTxt.setBounds(25, 310, 650, 135);
+		outputTxt.setForeground(Color.white);
+		panel.add(outputTxt);
+		
+		//background image set
+		roomBackground = new JLabel("",new ImageIcon(backgrounds(null)), JLabel.CENTER);
+				
+		//set image
+		roomBackground.setBounds(0,0,700,500);
+		panel.add(roomBackground);
+		
+		// change frame size and set it to exit on close
+		frame.setSize(710, 535);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// add panel... again!
+		frame.add(panel);
+		panel.setLayout(null);
+		
+		//centers frame
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		
+		//strength roll; currently placeholder
+		if(e.getActionCommand().equals("Str")) {
+			int result = ThreadLocalRandom.current().nextInt(1, 20+1);
+			outputTxt.setText("Rolled Strength! A "+result+"!");
+			
+		//dexterity roll; currently placeholder
+		} else if (e.getActionCommand().equals("Dex")) {
+			int result = ThreadLocalRandom.current().nextInt(1, 20+1);
+			outputTxt.setText("Rolled Dexterity! A "+result+"!");
+			
+		//constitution roll; currently placeholder
+		} else if (e.getActionCommand().equals("Con")) {
+			int result = ThreadLocalRandom.current().nextInt(1, 20+1);
+			outputTxt.setText("Rolled Constitution! A "+result+"!");
+			
+		//intelligence roll; currently placeholder
+		} else if (e.getActionCommand().equals("Int")) {
+			int result = ThreadLocalRandom.current().nextInt(1, 20+1);
+			outputTxt.setText("Rolled Intelligence! A "+result+"!");
+			
+		//wisdom roll; currently placeholder
+		} else if (e.getActionCommand().equals("Wis")) {
+			int result = ThreadLocalRandom.current().nextInt(1, 20+1);
+			outputTxt.setText("Rolled Wisdom! A "+result+"!");
+			
+		//charisma roll; currently placeholder
+		} else if (e.getActionCommand().equals("Cha")) {
+			int result = ThreadLocalRandom.current().nextInt(1, 20+1);
+			outputTxt.setText("Rolled Charisma! A "+result+"!");
+			
+		//text response; currently placeholder
+		} else if (e.getActionCommand().equals("Sub")){
+			String userInput = textBox.getText();
+			outputTxt.setText("<html>"+userInput+"<html>");
+		}
+		
+	}
+}
