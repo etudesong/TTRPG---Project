@@ -1,6 +1,8 @@
 package GUI;
 
 import java.awt.Color;
+import Classes.Adventurer;
+import Classes.Attributes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.ThreadLocalRandom;
@@ -28,11 +30,11 @@ public class gui implements ActionListener {
 	private static JLabel roomBackground;
 	private static JLabel outputTxt;
 	
+	Adventurer adventurer = new Adventurer();
 	
-	
-	public static String backgrounds(String myRoom) {
+	public String backgrounds(String myRoom) {
 		//placeholder values to be replaced with proper variables from other classes
-		String hero = "human";
+		String hero = adventurer.getRace();
 		int room = 1;
 		
 		//decides background visual based on race & current room number
@@ -185,8 +187,9 @@ public class gui implements ActionListener {
 		outputTxt.setForeground(Color.white);
 		panel.add(outputTxt);
 		
+		gui obj = new gui();
 		//background image set
-		roomBackground = new JLabel("",new ImageIcon(backgrounds(null)), JLabel.CENTER);
+		roomBackground = new JLabel("",new ImageIcon(obj.backgrounds(null)), JLabel.CENTER);
 				
 		//set image
 		roomBackground.setBounds(0,0,700,500);
@@ -225,3 +228,4 @@ public class gui implements ActionListener {
 		
 	}
 }
+
